@@ -9,6 +9,10 @@ public class Section implements Element {
         this.title = title;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     @Override
     public void add(Element e) {
         children.add(e);
@@ -24,15 +28,15 @@ public class Section implements Element {
         return children.get(index);
     }
 
-    protected void printChildren() {
-        for (Element e : children) {
-            e.print();
-        }
+    public void render() {
+        System.out.println(title);
     }
 
     @Override
-    public void print() {
-        System.out.println(title);
-        printChildren();
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+        for (Element e : children) {
+            e.accept(visitor);
+        }
     }
 }

@@ -13,8 +13,12 @@ public class ImageProxy implements Element {
         return realImg;
     }
 
+    public void render() {
+        loadImage().render();
+    }
+
     @Override
-    public void print() {
-        loadImage().print();
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

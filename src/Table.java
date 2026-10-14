@@ -5,8 +5,12 @@ public class Table implements Element {
         this.title = title;
     }
 
-    @Override
-    public void print() {
+    public void render() {
         System.out.println("Table with title:" + title);
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 }

@@ -17,12 +17,23 @@ public class Book extends Section {
     }
 
     @Override
-    public void print() {
+    public void render() {
         System.out.println("Book: " + title);
         System.out.println("Authors:");
         for (Author a : authors) {
             a.print();
         }
-        printChildren();
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+        for (Element e : children) {
+            e.accept(visitor);
+        }
+    }
+
+    public void addContentFirst(Element e) {
+        children.add(0, e);
     }
 }
