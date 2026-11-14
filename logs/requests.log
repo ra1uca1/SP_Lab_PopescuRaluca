@@ -1,0 +1,15 @@
+2026-11-14T15:51:56.317+02:00  INFO 35702 --- [lab4] [main] ro.uvt.MySpringApplication               : Starting MySpringApplication using Java 25.0.1 with PID 35702 (/Users/ralucapopescu/IdeaProjects/SP_Laborator/lab4/build/classes/java/main started by ralucapopescu in /Users/ralucapopescu/IdeaProjects/SP_Laborator)
+2026-11-14T15:51:56.318+02:00  INFO 35702 --- [lab4] [main] ro.uvt.MySpringApplication               : No active profile set, falling back to 1 default profile: "default"
+2026-11-14T15:51:56.828+02:00  INFO 35702 --- [lab4] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-11-14T15:51:56.842+02:00  INFO 35702 --- [lab4] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-14T15:51:56.843+02:00  INFO 35702 --- [lab4] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-11-14T15:51:56.873+02:00  INFO 35702 --- [lab4] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 530 ms
+2026-11-14T15:51:57.238+02:00  INFO 35702 --- [lab4] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-11-14T15:51:57.244+02:00  INFO 35702 --- [lab4] [main] ro.uvt.MySpringApplication               : Started MySpringApplication in 1.148 seconds (process running for 1.581)
+2026-11-14T15:52:49.587+02:00  INFO 35702 --- [lab4] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-14T15:52:49.588+02:00  INFO 35702 --- [lab4] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-14T15:52:49.590+02:00  INFO 35702 --- [lab4] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-11-14T15:52:49.594+02:00  INFO 35702 --- [lab4] [http-nio-8080-exec-1] ro.uvt.filters.RequestLoggingFilter      : BEFORE: POST /books
+2026-11-14T15:52:49.693+02:00  INFO 35702 --- [lab4] [http-nio-8080-exec-1] ro.uvt.filters.RequestLoggingFilter      : AFTER: POST /books -> status 200
+2026-11-14T15:52:55.283+02:00  INFO 35702 --- [lab4] [http-nio-8080-exec-2] ro.uvt.filters.RequestLoggingFilter      : BEFORE: GET /books
+2026-11-14T15:52:55.293+02:00  INFO 35702 --- [lab4] [http-nio-8080-exec-2] ro.uvt.filters.RequestLoggingFilter      : AFTER: GET /books -> status 200

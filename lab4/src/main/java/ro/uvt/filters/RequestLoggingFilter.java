@@ -1,0 +1,24 @@
+package ro.uvt.filters;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import java.io.IOException;
+
+@Component
+public class RequestLoggingFilter implements Filter {
+    private static final Logger log = LoggerFactory.getLogger(RequestLoggingFilter.class);
+
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+            throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        log.info("BEFORE: {} {}", request.getMethod(), request.getRequestURI());
+        chain.doFilter(req, res);
+        log.info("AFTER: {} {} -> status {}", request.getMethod(),
+                request.getRequestURI(), ((HttpServletResponse) res).getStatus());
+    }
+}
