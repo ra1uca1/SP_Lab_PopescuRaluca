@@ -17,14 +17,11 @@ public class BooksService {
 
     public Optional<Book> getById(int id) { return repository.findById(id); }
 
-    public Book create(Book b) {
-        return repository.save(new Book(null, b.getTitle(), b.getAuthor()));
-    }
+    public Book create(Book b) { return repository.save(b); }
 
     public Optional<Book> update(int id, Book b) {
         return repository.findById(id).map(existing -> {
             existing.setTitle(b.getTitle());
-            existing.setAuthor(b.getAuthor());
             return repository.save(existing);
         });
     }

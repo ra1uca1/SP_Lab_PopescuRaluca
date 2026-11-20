@@ -1,26 +1,38 @@
 package ro.uvt.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String title;
-    private String author;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Book extends Section {
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Author> authors = new ArrayList<>();
 
     protected Book() {}
 
-    public Book(Integer id, String title, String author) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
+    public Book(String title) { super(title); }
+
+    public void addAuthor(Author author) {
+        authors.add(author);
+        author.getBooks().add(this);
     }
 
-    public Integer getId() { return id; }
-    public String getTitle() { return title; }
-    public String getAuthor() { return author; }
+    public List<Author> getAuthors() { return authors; }
+
+    public void addContent(Element e) { add(e); }
+
+    public void addContentFirst(Element e) { children.add(0, (BaseElement) e); }
+
     public void setTitle(String title) { this.title = title; }
-    public void setAuthor(String author) { this.author = author; }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+        for (BaseElement e : children) {
+            e.accept(visitor);
+        }
+    }
 }
