@@ -5,7 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.uvt.commands.BookCommands.*;
 import ro.uvt.commands.CommandExecutor;
+import ro.uvt.models.Author;
 import ro.uvt.models.Book;
+import ro.uvt.models.Image;
+import ro.uvt.models.Paragraph;
+import ro.uvt.models.Section;
+import ro.uvt.models.Table;
 import ro.uvt.services.BooksService;
 
 import java.util.List;
@@ -40,6 +45,23 @@ public class BooksController {
         String taskId = executor.submitAsync(new CreateBookCommand(service, book));
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(Map.of("taskId", taskId, "statusUrl", "/books/status/" + taskId));
+    }
+
+    // endpoint de test: creeaza o carte completa (autor, capitol, paragraf, imagine, tabel)
+    @PostMapping("/sample")
+    public Book createSample() {
+        Book book = new Book("Noapte buna, copii!");
+        book.addAuthor(new Author("Radu Pavel", "Gheo"));
+
+        Section c1 = new Section("Capitolul 1");
+        c1.add(new Paragraph("Moto capitol"));
+        c1.add(new Image("imagine1"));
+        c1.add(new Table("Tabel 1"));
+
+        book.addContent(new Paragraph("Multumesc celor care ..."));
+        book.addContent(c1);
+
+        return service.create(book);
     }
 
     // polling: clientul intreaba daca s-a terminat
